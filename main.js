@@ -7,10 +7,10 @@ var universities = [
 ];
 
 var cities = [
-					{'pos': [11.582, 48.135], 'name': 'TU-Muenchen'},
-					{'pos': [16.374, 48.208], 'name': 'TU-Wien'},
-					{'pos': [13.737, 51.050], 'name': 'TU-Dresden'},
-					{'pos': [6.894, 52.222], 'name': 'Uni-Twente'}
+					{'pos': [11.582, 48.135], 'name': 'TU-Muenchen', 'icon': 'http://www.mlz-garching.de/files/tum_logo.png'},
+					{'pos': [16.374, 48.208], 'name': 'TU-Wien', 'icon': 'https://www.tuwien.ac.at/fileadmin/t/tuwien/downloads/cd/CD_2015/TU_Logo.gif'},
+					{'pos': [13.737, 51.050], 'name': 'TU-Dresden', 'icon': 'https://tu-dresden.de/tulogosw.png'},
+					{'pos': [6.894, 52.222], 'name': 'Uni-Twente', 'icon': 'http://www.charterworld.com/news/wp-content/uploads/2011/06/logo-university-of-twente.png'}
 ];
 
 var countries = [
@@ -27,11 +27,11 @@ var ferry_path = [
           [11.582, 48.135]
 ];
 
-var width  = 500,
-	height = 500;
+var width  = 700,
+	height = 570;
 
 var projection = d3.geo.orthographic()
-    .scale(2800)
+    .scale(3600)
     .translate([width / 2, height / 2])
     .rotate([-11, -51, 0])
     .clipAngle(90)
@@ -39,7 +39,7 @@ var projection = d3.geo.orthographic()
 
 
 var graticule = d3.geo.graticule() //change extent!!!
-    .extent([[-5, 5], [30, 90]])
+    .extent([[-3, 10], [23, 70]])
     .step([3, 3]);
 
 var path = d3.geo.path()  
@@ -114,6 +114,17 @@ var frMerge = myglow.append("feMerge");
   frMerge.append("feMergeNode")
     .attr("in","comp");
 
+var hover = function(d) {
+    console.log('d', d, 'event', event);
+    var div = document.getElementById('tooltip');
+    div.style.left = event.pageX +'px';
+    div.style.top = event.pageY + 'px';
+    var intro= "The four semester Master programme starts every year in winter semester (October) and will enroll up to 25 students from all over the world. Language of instruction is English. The full-time programme awards a total of 120 ECTS and is to be completed in two years. Students obtain 30 ECTS in each semester/at each university, respectively 30 ECTS for their Master thesis.";
+    div.innerHTML = intro ;
+  };
+
+
+
 svg.append("path")
     .datum(graticule)
     .attr("class", "graticule")
@@ -150,6 +161,8 @@ d3.json("data.json", function(error, data) {
       .style("stroke", "#999")
       .style("stroke-width", 0.6);
 
+ 
+
   var city_labels =svg.selectAll(".city_label")
     .data(cities)
     .enter();
@@ -171,6 +184,7 @@ d3.json("data.json", function(error, data) {
     .attr("fill", "black")
     .attr("cx",function(d){return projection(d.pos)[0];})
     .attr("cy",function(d){return projection(d.pos)[1];});
+
 
   svg.selectAll(".country_label")
     .data(countries)
@@ -237,4 +251,10 @@ var i = 0;
   },1000);
   
 });
+
+//http://www.mlz-garching.de/files/tum_logo.png tum
+//https://www.tuwien.ac.at/fileadmin/t/tuwien/downloads/cd/CD_2015/TU_Logo.gif tuwien
+//https://tu-dresden.de/tulogosw.png tu dresden
+//http://www.charterworld.com/news/wp-content/uploads/2011/06/logo-university-of-twente.png twente uni
+
 })();
