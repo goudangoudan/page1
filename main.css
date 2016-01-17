@@ -1,0 +1,44 @@
+#map {
+	text-align: center;
+}
+svg .graticule {
+	fill:#fcfcfc;
+	stroke-width: 0.2;
+	stroke: #777;
+}
+svg .bg, svg .bgback {
+	stroke: none;
+	fill: #d1beb0;
+	fill-opacity:0.2;
+}
+
+svg .country:hover {
+	fill: #fff;
+	fill-opacity: 0.6;
+}
+
+svg .country {
+	stroke: #eda;
+	stroke-opacity: 0.5;
+	fill: #fff;
+	fill-opacity: 1;
+}
+
+svg .ferry_path {
+	fill: none;
+	stroke-opacity: 0.5;
+	stroke-dasharray: 3, 4;
+}
+
+@font-face {
+    font-family: 'AquilineTwoRegular';
+    src: url('AquilineTwo-webfont.eot');
+    src: url('AquilineTwo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('AquilineTwo-webfont.woff') format('woff'),
+         url('AquilineTwo-webfont.ttf') format('truetype'),
+         url('AquilineTwo-webfont.svg#AquilineTwoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
