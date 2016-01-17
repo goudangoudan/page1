@@ -327,8 +327,8 @@ d3.json("data.json", function(error, data) { //load data through AJAX call with 
     .attr("font-family", "AquilineTwoRegular")
     .attr("font-size", "18px")
     .attr("fill", "#544")
-    .attr("x",function(d){return projection(d.pos)[0]+10;})
-    .attr("y",function(d){return projection(d.pos)[1]+10;})
+    .attr("x",function(d){return projection(d.pos)[0]+100;})
+    .attr("y",function(d){return projection(d.pos)[1]+100;})
     .on("mouseover",hover2)
     .on("mouseout",hoverout2);
 
